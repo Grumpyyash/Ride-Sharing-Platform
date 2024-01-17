@@ -39,6 +39,12 @@ const getRidesController = async (req, res) => {
   res.json(allRides);
 };
 
+const getRidesControllerWithId = async (req, res) => {
+  const allRidesOfCustomer = await Ride.find({customerId : req.params.id});
+
+  res.json(allRidesOfCustomer);
+};
+
 const getRideWithIdController = async (req, res) => {
   const rideId = req.params.id;
 
@@ -66,6 +72,6 @@ const automaticupdate = async (req, res) => {
 export {
   getHomeController,
   createRideController,
-  getRidesController,
+  getRidesController, getRidesControllerWithId,
   getRideWithIdController,
 };

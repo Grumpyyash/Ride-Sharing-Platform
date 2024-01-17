@@ -7,7 +7,7 @@ import FormGroup from "../Components/Form";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../App.css";
 
-const Home = () => {
+const Home = ({handlCustomerId}) => {
   const [latitude, setLatitude] = useState(null);
   const [longitude, setLongitude] = useState(null);
 
@@ -39,7 +39,7 @@ const Home = () => {
           </Col>
           <Col>
             {latitude && (
-              <FormGroup latitude={latitude} longitude={longitude} />
+              <FormGroup latitude={latitude} longitude={longitude} handlCustomerId={handlCustomerId}/>
             )}
           </Col>
         </Row>

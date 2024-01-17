@@ -15,7 +15,7 @@ mongoose.connect(process.env.MONGO_URI);
 const db = mongoose.connection;
 
 db.on("error", (err) => {
-  console.log("Error connecting to MongoDB Atlas:", err);
+  console.log("Error connecting to MongoDB Atlasss:", err);
 });
 
 db.on("open", () => {

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { Button, Form } from "react-bootstrap";
 
-const FormGroup = ({ latitude, longitude }) => {
+const FormGroup = ({ latitude, longitude ,handlCustomerId}) => {
   const [formData, setFormData] = useState({
     tripId: "",
     driverName: "",
@@ -38,6 +38,7 @@ const FormGroup = ({ latitude, longitude }) => {
     try {
       const createRideApiUrl = "http://localhost:5000/createRide";
       const response = await axios.post(createRideApiUrl, formData);
+      handlCustomerId(formData.customerId);
       console.log(response);
       console.log("Post request is successful");
       setShareDisabled(false);
