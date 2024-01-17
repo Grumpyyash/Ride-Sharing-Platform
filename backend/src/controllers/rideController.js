@@ -39,4 +39,33 @@ const getRidesController = async (req, res) => {
   res.json(allRides);
 };
 
-export { getHomeController, createRideController, getRidesController };
+const getRideWithIdController = async (req, res) => {
+  const rideId = req.params.id;
+
+  const rideWithGivenId = await Ride.find({ tripId: rideId }).exec();
+  res.json(rideWithGivenId);
+};
+
+const change = 0.00002;
+
+const automaticupdate = async (req, res) => {
+  const rideId = req.params.id;
+  setInterval(() => {
+    Ride.findOneAndUpdate(
+      { tripId: rideId },
+      { $inc: { currentLatitude: change, currentLongitude: change } },
+      { new: true }
+    )
+      .exec()
+      .catch((err) => {
+        console.log(err);
+      });
+  }, 2000);
+};
+
+export {
+  getHomeController,
+  createRideController,
+  getRidesController,
+  getRideWithIdController,
+};

@@ -16,6 +16,9 @@ const Map = ({ latitude, longitude }) => {
     });
 
     new maplibregl.Marker().setLngLat([longitude, latitude]).addTo(map);
+    new maplibregl.Marker()
+      .setLngLat([longitude + 0.002, latitude + 0.002])
+      .addTo(map);
 
     return () => map.remove();
   }, [latitude, longitude]);

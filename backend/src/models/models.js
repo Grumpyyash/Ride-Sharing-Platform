@@ -38,6 +38,14 @@ const rideSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
+  currentLatitude: {
+    type: Number,
+    required: true,
+  },
+  currentLongitude: {
+    type: Number,
+    required: true,
+  },
   isActive: {
     type: Boolean,
     required: true,

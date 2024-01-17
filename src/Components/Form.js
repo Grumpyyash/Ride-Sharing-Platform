@@ -33,16 +33,23 @@ const FormGroup = ({ latitude, longitude }) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    setShareDisabled(false);
+
     console.log(formData);
     try {
       const createRideApiUrl = "http://localhost:5000/createRide";
       const response = await axios.post(createRideApiUrl, formData);
       console.log(response);
       console.log("Post request is successful");
+      setShareDisabled(false);
     } catch (error) {
       console.log("Error in the post request", error);
     }
+  };
+
+  const handleCompanionClick = () => {
+    const urlToOpen = `http://localhost:3000/companion/${formData.tripId}`;
+
+    window.open(urlToOpen, "_blank");
   };
 
   return (
@@ -120,6 +127,16 @@ const FormGroup = ({ latitude, longitude }) => {
         style={{ marginLeft: "20px", marginRight: "20px" }}
       >
         Share Ride
+      </Button>
+
+      <Button
+        variant="info"
+        disabled={shareDisabled}
+        href={`/companion/${formData.tripId}`}
+        onClick={handleCompanionClick}
+        style={{ marginLeft: "20px", marginRight: "20px" }}
+      >
+        Companion
       </Button>
 
       <Button
