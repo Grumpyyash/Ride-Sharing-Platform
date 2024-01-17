@@ -38,7 +38,9 @@ const Home = () => {
             {latitude && <Map latitude={latitude} longitude={longitude} />}
           </Col>
           <Col>
-            <FormGroup />
+            {latitude && (
+              <FormGroup latitude={latitude} longitude={longitude} />
+            )}
           </Col>
         </Row>
       </Container>

@@ -6,6 +6,10 @@ const rideSchema = new mongoose.Schema({
     required: true,
     unique: true,
   },
+  customerId: {
+    type: String,
+    required: true,
+  },
   driverName: {
     type: String,
     required: true,
@@ -34,12 +38,10 @@ const rideSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
-  customerId: {
-    type: String,
-    require: true,
+  isActive: {
+    type: Boolean,
+    required: true,
   },
-  // You can add more fields as needed for your trip model
-  // For example: startLocation, endLocation, startTime, endTime, etc.
 });
 
 const Ride = mongoose.model("Ride", rideSchema);

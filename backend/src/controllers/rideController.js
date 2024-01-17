@@ -7,6 +7,7 @@ const getHomeController = (req, res) => {
 const createRideController = async (req, res) => {
   const {
     tripId,
+    customerId,
     driverName,
     driverPhoneNumber,
     cabNumber,
@@ -14,7 +15,7 @@ const createRideController = async (req, res) => {
     startLongitude,
     endLatitude,
     endLongitude,
-    customerId,
+    isActive,
   } = req.body;
   const newRide = new Ride({
     tripId,
@@ -26,9 +27,16 @@ const createRideController = async (req, res) => {
     endLatitude,
     endLongitude,
     customerId,
+    isActive,
   });
   await newRide.save();
   res.json(newRide);
 };
 
-export { getHomeController, createRideController };
+const getRidesController = async (req, res) => {
+  const allRides = await Ride.find({});
+
+  res.json(allRides);
+};
+
+export { getHomeController, createRideController, getRidesController };
