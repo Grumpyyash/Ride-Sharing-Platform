@@ -33,7 +33,6 @@ const FormGroup = ({ latitude, longitude ,handlCustomerId}) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
     console.log(formData);
     try {
       const createRideApiUrl = "http://localhost:5000/createRide";
@@ -133,7 +132,7 @@ const FormGroup = ({ latitude, longitude ,handlCustomerId}) => {
       <Button
         variant="info"
         disabled={shareDisabled}
-        href={`/companion/${formData.tripId}`}
+        // href={`/companion/${formData.tripId}`}
         onClick={handleCompanionClick}
         style={{ marginLeft: "20px", marginRight: "20px" }}
       >
