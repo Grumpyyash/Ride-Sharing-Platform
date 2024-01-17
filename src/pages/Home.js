@@ -6,6 +6,7 @@ import FormGroup from "../Components/Form";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../App.css";
+import AnimatedMap from "../Components/AnimatedMap";
 
 const Home = () => {
   const [latitude, setLatitude] = useState(null);
@@ -35,6 +36,7 @@ const Home = () => {
         <h5>Hello Traveller!</h5>
         <Row>
           <Col>
+            <AnimatedMap />
             {latitude && <Map latitude={latitude} longitude={longitude} />}
           </Col>
           <Col>
