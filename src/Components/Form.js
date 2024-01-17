@@ -10,8 +10,8 @@ const FormGroup = ({ latitude, longitude ,handlCustomerId}) => {
     cabNumber: "",
     startLatitude: latitude,
     startLongitude: longitude,
-    endLatitude: "",
-    endLongitude: "",
+    endLatitude: latitude + 0.04,
+    endLongitude: longitude + 0.04,
     customerId: "",
     isActive: true,
   });

@@ -2,8 +2,12 @@ import React, { useEffect, useRef } from "react";
 import maplibregl from "maplibre-gl";
 import { lineDistance, along, bearing, point } from "@turf/turf";
 
-const AnimatedMap = () => {
-  console.log("Inside Animated Map");
+const AnimatedMap = ({
+  startLatitude,
+  startLongitude,
+  endLatitude,
+  endLongitude,
+}) => {
   const mapContainer = useRef(null);
 
   useEffect(() => {
@@ -15,13 +19,24 @@ const AnimatedMap = () => {
       zoom: 3,
     });
 
-    // San Francisco
+    // // San Francisco
+    // const origin = [
+    //   isNaN(startLatitude) || !startLatitude ? -122.414 : startLatitude,
+    //   isNaN(startLongitude) || !startLongitude ? 37.776 : startLongitude,
+    // ];
+
+    // // Washington DC
+    // const destination = [
+    //   isNaN(endLatitude) || !endLatitude ? -77.032 : endLatitude,
+    //   isNaN(endLongitude) || !endLongitude ? 38.913 : endLongitude,
+    // ];
+
     const origin = [-122.414, 37.776];
 
     // Washington DC
     const destination = [-77.032, 38.913];
-
-    // A simple line from origin to destination.
+    console.log("Inside Animated Map", origin, destination);
+    // // A simple line from origin to destination.
     const route = {
       type: "FeatureCollection",
       features: [
@@ -111,6 +126,7 @@ const AnimatedMap = () => {
       function animate() {
         // Update point geometry to a new position based on counter denoting
         // the index to access the arc.
+        console.log("route.features", route.features);
         p.features[0].geometry.coordinates =
           route.features[0].geometry.coordinates[counter];
 
@@ -119,14 +135,14 @@ const AnimatedMap = () => {
         // at the end of the arc use the previous point and the current point
         p.features[0].properties.bearing = bearing(
           point(
-            route.features[0].geometry.coordinates[
+            route.features[0].geometry?.coordinates[
               counter >= steps ? counter - 1 : counter
-            ]
+            ] || origin
           ),
           point(
-            route.features[0].geometry.coordinates[
+            route.features[0].geometry?.coordinates[
               counter >= steps ? counter : counter + 1
-            ]
+            ] || origin
           )
         );
 
@@ -146,7 +162,7 @@ const AnimatedMap = () => {
     });
 
     return () => map.remove();
-  }, []);
+  }, [startLatitude, startLongitude, endLatitude, endLongitude]);
 
   return <div ref={mapContainer} style={{ width: "90%", height: "400px" }} />;
 };

@@ -40,11 +40,9 @@ const rideSchema = new mongoose.Schema({
   },
   currentLatitude: {
     type: Number,
-    required: true,
   },
   currentLongitude: {
     type: Number,
-    required: true,
   },
   isActive: {
     type: Boolean,

@@ -3,7 +3,7 @@ import axios from "axios";
 import { Container } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import RideTable from "../Components/Table";
-import Map from "../Components/Maps";
+import AnimatedMap from "../Components/AnimatedMap";
 
 const Companion = () => {
   const { tripId } = useParams();
@@ -34,9 +34,11 @@ const Companion = () => {
       <h4>Ride details for {tripId}</h4>
       {tripDetails && <RideTable rideDetails={tripDetails} />}
       {tripDetails && (
-        <Map
-          latitude={tripDetails.startLatitude}
-          longitude={tripDetails.startLongitude}
+        <AnimatedMap
+          startLatitude={tripDetails.startLatitude || -122.414}
+          startLongitude={tripDetails.startLongitude || 37.776}
+          endLatitude={tripDetails.endLatitude || -77.032}
+          endLongitude={tripDetails.endLongitude || 38.913}
         />
       )}
     </Container>

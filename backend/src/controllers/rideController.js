@@ -18,6 +18,8 @@ const createRideController = async (req, res) => {
     isActive,
   } = req.body;
   const newRide = new Ride({
+    currentLatitude: startLatitude,
+    currentLongitude: startLongitude,
     tripId,
     driverName,
     driverPhoneNumber,
